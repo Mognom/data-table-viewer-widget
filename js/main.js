@@ -13,7 +13,7 @@
 
         /* Context */
         MashupPlatform.widget.context.registerCallback(function (newValues) {
-            if (this.layout && "heightInPixels" in newValues) {
+            if (this.layout && ("heightInPixels" in newValues || "widthInPixels" in newValues)) {
                 this.layout.repaint();
             }
         }.bind(this));
