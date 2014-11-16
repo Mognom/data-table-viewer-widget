@@ -10,6 +10,7 @@
   </details>
   <wiring>
     <inputendpoint name="dataset" type="text" label="Data and Structure" description="A JSON with two fields: structure (for the structure of the data) and data (the data ifself)" actionlabel="Data and Structure" friendcode="dataset"/>
+    <inputendpoint name="selected-row" type="text" label="Row selection" description="This event is sent every time a row is selected" friendcode="data-table-row"/>
   </wiring>
   <contents src="index.html" useplatformstyle="true"/>
   <rendering height="37" width="15"/>

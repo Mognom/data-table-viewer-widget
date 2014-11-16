@@ -75,6 +75,10 @@
 /****************************** HANDLERS **********************************/
 /**************************************************************************/
 
+    var onRowClick = function onRowClick(row) {
+        MashupPlatform.wiring.pushEvent('selected-row', row);
+    };
+
     var handlerDataSet = function handlerSlotIssue(datasetString) {
         /*  dataset = {
          *      "structure": [ {"id": "pk", "type": "number"}, ... ],
@@ -95,6 +99,7 @@
         // Create the table
         this.table = new StyledElements.ModelTable(this.structure, {id: this.structure[0].field, pageSize: 10});
         this.table.source.changeElements(this.data);
+        this.table.addEventListener("click", onRowClick);
         this.layout.getCenterContainer().appendChild(this.table);
 
         // Repaint the layout
