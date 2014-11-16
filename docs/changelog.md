@@ -1,3 +1,8 @@
+2.0.0
+=====
+
+* Allow to pass full column descriptions
+
 1.0.1
 =====
 

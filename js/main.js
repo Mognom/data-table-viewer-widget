@@ -93,13 +93,7 @@
         this.structure = dataset.structure;
 
         // Create the table
-        var columns = [];
-        for (var i = 0; i < this.structure.length; i++) {
-            //Accepted types: number, boolean, string, date
-            columns.push({ field: this.structure[i].id, label: this.structure[i].id, sortable: true, type: this.structure[i].type});
-        }
-
-        this.table = new StyledElements.ModelTable(columns, {id: this.structure[0].id, pageSize: 10});
+        this.table = new StyledElements.ModelTable(this.structure, {id: this.structure[0].field, pageSize: 10});
         this.table.source.changeElements(this.data);
         this.layout.getCenterContainer().appendChild(this.table);
 
