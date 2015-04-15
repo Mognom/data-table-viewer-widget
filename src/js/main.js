@@ -13,7 +13,7 @@
 
         /* Context */
         MashupPlatform.widget.context.registerCallback(function (newValues) {
-            if (this.layout && "heightInPixels" in newValues) {
+            if (this.layout && ("heightInPixels" in newValues || "widthInPixels" in newValues)) {
                 this.layout.repaint();
             }
         }.bind(this));
@@ -75,6 +75,10 @@
 /****************************** HANDLERS **********************************/
 /**************************************************************************/
 
+    var onRowClick = function onRowClick(row) {
+        MashupPlatform.wiring.pushEvent('selected-row', row);
+    };
+
     var handlerDataSet = function handlerSlotIssue(datasetString) {
         /*  dataset = {
          *      "structure": [ {"id": "pk", "type": "number"}, ... ],
@@ -93,14 +97,9 @@
         this.structure = dataset.structure;
 
         // Create the table
-        var columns = [];
-        for (var i = 0; i < this.structure.length; i++) {
-            //Accepted types: number, boolean, string, date
-            columns.push({ field: this.structure[i].id, label: this.structure[i].id, sortable: true, type: this.structure[i].type});
-        }
-
-        this.table = new StyledElements.ModelTable(columns, {id: this.structure[0].id, pageSize: 10});
+        this.table = new StyledElements.ModelTable(this.structure, {id: this.structure[0].field, pageSize: 10});
         this.table.source.changeElements(this.data);
+        this.table.addEventListener("click", onRowClick);
         this.layout.getCenterContainer().appendChild(this.table);
 
         // Repaint the layout
