@@ -1,0 +1,8 @@
+{
+  "name": "data-table-viewer",
+  "dependencies": {},
+  "exportsOverride": {},
+  "devDependencies": {
+    "jasmine-jquery": "2.0.6"
+  }
+}
