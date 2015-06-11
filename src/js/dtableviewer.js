@@ -3,7 +3,7 @@
  *
  */
 
-/*global StyledElements, MashupPlatform */
+/* global StyledElements, MashupPlatform */
 
 
 window.DataViewer = (function () {
@@ -104,10 +104,19 @@ window.DataViewer = (function () {
         this.data = dataset.data;
         this.structure = dataset.structure;
 
+        // This is required for supporting data coming from CKAN
+        // TODO: support CKAN through a new input endpoint
+        if (this.structure[0].field == null && this.structure[0].id != null) {
+            for (var i = 0; i < this.structure.length; i++) {
+                this.structure[i].field = this.structure[i].id;
+            }
+        }
+        // END TODO
+
         // Create the table
         this.table = new StyledElements.ModelTable(this.structure, {id: this.structure[0].field, pageSize: 10});
         this.table.source.changeElements(this.data);
-        this.table.addEventListener("click", onRowClick);
+        this.table.addEventListener("click", onRowClick.bind(this));
         this.layout.getCenterContainer().appendChild(this.table);
 
         // Repaint the layout

@@ -3,14 +3,14 @@
  *
  */
 
-/*global $, DataViewer */
+/* global DataViewer */
 
 
-$(function () {
+(function () {
 
     "use strict";
 
     var data_viewer = new DataViewer();
     window.addEventListener("DOMContentLoaded", data_viewer.init.bind(data_viewer), false);
 
-});
+})();
