@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/*global $, DataViewer, StyledElements, MashupPlatform*/
+/* global $, DataViewer */
 
 
 (function () {
