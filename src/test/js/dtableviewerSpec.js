@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-/* global $, DataViewer */
+/* global $, DataViewer, MockMP */
 
 
 (function () {
@@ -45,14 +45,14 @@
         return null;
     };
 
+    window.MashupPlatform = new MockMP.MockMP();
+
     describe("Data Table Viewer widget", function () {
 
         var widget = null;
 
         beforeEach(function () {
             loadFixtures('index.html');
-            MashupPlatform.wiring.registerCallback.calls.reset();
-            MashupPlatform.widget.context.registerCallback.calls.reset();
 
             widget = new DataViewer();
             widget.init();
@@ -60,6 +60,7 @@
         });
 
         afterEach(function () {
+            MashupPlatform.reset();
             clearDocument();
         });
 
